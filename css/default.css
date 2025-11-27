@@ -1,4 +1,4 @@
-/* Ensure padding doesn't break layout */
+/* GLOBAL RESET */
 * {
     box-sizing: border-box;
 }
@@ -6,12 +6,12 @@
 body {
     margin: 0;
     padding: 0;
+    /* DESKTOP BACKGROUND */
     background: url('../bg.png') no-repeat center center fixed; 
     background-size: cover;
     font-size: 12px;
     overflow: auto;
-    /* Prevent horizontal scrolling on mobile */
-    overflow-x: hidden; 
+    overflow-x: hidden;
 }
 
 #mainDiv{width:100%;height:100%}
@@ -27,7 +27,7 @@ body {
 
 #clickSound{display:none}
 
-/* --- GLASS EFFECT TEXT BOX (DESKTOP) --- */
+/* TEXT BOX STYLE (Desktop) */
 #code{
     float:left;
     width:440px;
@@ -47,7 +47,6 @@ body {
     margin-left: 20px; 
 }
 
-/* --- SCROLLBAR STYLING --- */
 #code::-webkit-scrollbar { width: 10px; }
 #code::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.5); border-radius: 10px; }
 #code::-webkit-scrollbar-thumb { background: #ff69b4; border-radius: 10px; }
@@ -62,63 +61,81 @@ body {
 #errorMsg{width:100%;text-align:center;font-size:24px;position:absolute;top:100px;left:0}
 #copyright a{color:#666}
 
-/* Icons */
 #icon{font-size: 48px;color: red;margin: 50 px; align-content: center;}
 #heartspan{align-content: center;text-align: center;margin: 20px;}
 #babyicon{font-size: 48px;color: #ff69b4; margin: 50 px; align-content: center;}
 #babyspan{align-content: center;text-align: center;margin: 20px;}
 
 /* =======================================================
-   MOBILE OPTIMIZATION (STRICT CENTERING)
+   MOBILE OPTIMIZATION (THE "CLICK TO REVEAL" FIX)
    ======================================================= */
 @media screen and (max-width: 768px) {
     
-    /* 1. Force the main container to act as a Flex Column */
+    /* 1. MOBILE BACKGROUND */
+    body {
+        /* Update this file name to bg_mobile.jpg */
+        background: url('../bg_mobile.jpg') no-repeat center center fixed !important;
+        background-size: cover !important;
+    }
+
+    /* 2. THE BEIGE OVERLAY CONTAINER */
     #content {
-        width: 100% !important;
-        height: auto !important;
+        width: 100vw !important;
+        height: 100vh !important; /* Full Screen */
+        position: fixed;
+        top: 0;
+        left: 0;
+        
+        /* Flexbox to order items */
         display: flex !important;
-        flex-direction: column !important; /* Stack Top to Bottom */
-        align-items: center !important;    /* CENTER Horizontally */
-        justify-content: flex-start !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        
         margin: 0 !important;
         padding-top: 20px;
+        
+        /* HIDDEN INITIALLY (Wait for click) */
+        opacity: 0; 
+        pointer-events: none; /* Click goes through to body */
+        transition: opacity 1.5s ease; /* Slow fade in */
+        
+        /* The Transparent Beige Background */
+        background-color: rgba(245, 245, 220, 0.92); 
+        z-index: 999;
     }
 
-    /* 2. Fix the White Box */
-    #code {
-        float: none !important;
-        width: 90vw !important; /* 90% of Viewport Width */
-        max-width: 90% !important;
-        height: 45vh !important; /* Take up 45% of screen height */
-        margin: 0 auto !important; /* Auto margins force centering */
-        font-size: 12px;
+    /* 3. SHOW CONTENT CLASS (Added by JS on click) */
+    #content.show-gift {
+        opacity: 1;
+        pointer-events: auto;
     }
 
-    /* 3. Center and Scale the Heart */
+    /* 4. HEART ON TOP (Order 1) */
     #loveHeart {
         float: none !important;
-        width: 670px !important; /* Keep canvas math size */
+        order: 1; /* First item */
+        width: 670px !important;
         height: 625px !important;
         
-        /* Center using margins */
-        margin-left: auto !important;
-        margin-right: auto !important;
-        
-        /* Scale it down to fit mobile */
+        /* Scale down */
         transform: scale(0.5); 
-        transform-origin: top center; 
+        transform-origin: center center;
         
-        /* Pull it up closer to text */
-        margin-top: -30px !important;
-        margin-bottom: -200px !important; 
+        margin: -100px 0 -150px 0 !important; /* Compact margins */
+    }
+
+    /* 5. TEXT BOX ON BOTTOM (Order 2) */
+    #code {
+        float: none !important;
+        order: 2; /* Second item */
+        width: 90% !important;
+        height: 40vh !important; /* 40% of screen height */
+        margin: 0 auto !important;
+        font-size: 12px;
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly more white */
     }
 
     #words { font-size: 28px; }
     #messages { font-size: 35px; }
-    
-    body {
-        background-attachment: scroll;
-        background-position: top center;
-    }
 }
