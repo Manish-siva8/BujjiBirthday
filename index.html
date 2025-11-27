@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <script src="https://kit.fontawesome.com/a14ae32021.js" crossorigin="anonymous"></script>
@@ -11,6 +11,28 @@
     font-family: digit;
     src: url('digital-7_mono.ttf') format("truetype");
 }
+/* Tap hint style */
+#tapHint {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    bottom: 50px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-family: sans-serif;
+    font-size: 20px;
+    text-shadow: 2px 2px 4px #000;
+    animation: bounce 2s infinite;
+    z-index: 500;
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+  40% {transform: translateY(-10px);}
+  60% {transform: translateY(-5px);}
+}
+@media screen and (max-width: 768px) {
+    #tapHint { display: block; } /* Show only on mobile */
+}
 </style>
 <link href="css/default.css" type="text/css" rel="stylesheet">
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -20,6 +42,8 @@
 </head>
 
 <body>
+
+<div id="tapHint">Tap screen to open gift 🎁</div>
 
 <div id="mainDiv">
     <div id="content">
@@ -107,7 +131,6 @@
 var offsetX = $("#loveHeart").width() / 2;
 var offsetY = $("#loveHeart").height() / 2 - 55;
 var together = new Date();
-// 8 is September
 together.setFullYear(2022, 8, 13);
 together.setHours(15);
 together.setMinutes(30);
@@ -137,25 +160,37 @@ if (!document.createElement('canvas').getContext) {
     $("#code").typewriter();
 }
 
-// --- ERROR-FREE MUSIC SCRIPT ---
+// --- MUSIC & MOBILE TAP REVEAL ---
 var audio = document.getElementById("bgMusic");
 
 function playAudio() {
     var playPromise = audio.play();
     if (playPromise !== undefined) {
         playPromise.then(function() {
-            document.body.removeEventListener('click', playAudio);
-            document.body.removeEventListener('touchstart', playAudio);
-        }).catch(function(error) {
-        });
+            // Audio started
+        }).catch(function(error) {});
     }
 }
 
-playAudio();
+// Mobile Reveal Function
+function revealGift() {
+    // 1. Play Music
+    playAudio();
+    
+    // 2. Reveal the content (fade in beige overlay)
+    var content = document.getElementById("content");
+    content.classList.add("show-gift");
+    
+    // 3. Hide the tap hint
+    document.getElementById("tapHint").style.display = "none";
+}
 
-document.body.addEventListener('click', playAudio);
-document.body.addEventListener('touchstart', playAudio);
-document.body.addEventListener('mousemove', playAudio);
+// Listen for clicks everywhere
+document.body.addEventListener('click', revealGift);
+document.body.addEventListener('touchstart', revealGift);
+
+// Auto-play attempt for desktop
+playAudio();
 </script>
 </body>
 </html>
