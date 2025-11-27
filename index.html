@@ -86,7 +86,7 @@
                 <br/>
                 And to see the cutest baby in the world:<br/>
                 <span id="babyspan">
-                <a href="childhood.jpg" target="_blank"><i class="fas fa-child" id="babyicon"></i></a>
+                <a href="childhood.png" target="_blank"><i class="fas fa-child" id="babyicon"></i></a>
                 </span>
             </div>
             <div id="loveHeart">
@@ -124,28 +124,24 @@ together.setMilliseconds(0);
 
 var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 var audio = document.getElementById("bgMusic");
-var animationStarted = false; // Flag to stop glitching
+var animationStarted = false; 
 
 if (isMobile) {
     $("#beigeOverlay").hide();
     $("#mobileStart").show();
 
-    // OPEN GIFT CLICK
     $("#startBtn").click(function() {
         audio.play(); 
-        
         $("#mobileStart").fadeOut(500, function() {
             $("#beigeOverlay").fadeIn(1000, function() {
                 
-                // ONLY RUN THIS ONCE to prevent glitching/restarting
+                // RUN ONCE LOGIC
                 if (!animationStarted) {
                     animationStarted = true;
-                    
                     var $loveHeart = $("#loveHeart");
                     var $garden = $("#garden");
                     $loveHeart.css("display", "block");
                     
-                    // Logic to set up canvas
                     offsetX = $loveHeart.width() / 2;
                     offsetY = $loveHeart.height() / 2 - 55;
                     var gardenCanvas = $garden[0];
@@ -157,24 +153,17 @@ if (isMobile) {
                     
                     adjustWordsPosition();
                     startHeartAnimation();
-                    
                     timeElapse(together);
                     setInterval(function () {
                         timeElapse(together);
                     }, 500);
-                    
                     adjustCodePosition();
-                    
-                    // On mobile, just show text instantly to avoid typewriter glitches
-                    $("#code").show(); 
-                    // If you really want typewriter, uncomment line below:
-                    // $("#code").typewriter();
+                    $("#code").show(); // Instant text show on mobile
                 }
             });
         });
     });
 
-    // CLOSE BUTTON CLICK (Just hide, don't reset)
     $("#closeBtn").click(function() {
         $("#beigeOverlay").fadeOut(500, function() {
             $("#mobileStart").fadeIn(500);
@@ -182,17 +171,15 @@ if (isMobile) {
     });
 
 } else {
-    // DESKTOP LOGIC
+    // DESKTOP
     $("#mobileStart").hide();
     $("#beigeOverlay").show();
-    
     var playPromise = audio.play();
     if (playPromise !== undefined) {
         playPromise.catch(error => {
             document.body.addEventListener('click', function() { audio.play(); }, { once: true });
         });
     }
-
     if (!document.createElement('canvas').getContext) {
         var msg = document.createElement("div");
         msg.id = "errorMsg";
