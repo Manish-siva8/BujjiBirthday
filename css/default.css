@@ -1,0 +1,138 @@
+﻿/* Ensure padding doesn't break layout */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: url('../bg.png') no-repeat center center fixed; 
+    background-size: cover;
+    font-size: 12px;
+    overflow: auto;
+}
+
+#mainDiv{width:100%;height:100%}
+#loveHeart{float:left;width:670px;height:625px}
+#garden{width:100%;height:100%}
+#elapseClock{text-align:right;font-size:18px;margin-top:10px;margin-bottom:10px}
+#words{font-family:"sans-serif";width:500px;font-size:24px;color:#666}
+#messages{display:none;text-align: center;font-size: 30px}
+#elapseClock .digit{font-family:"digit";font-size:40px;text-align: center;}
+
+#loveu{padding:5px;font-size:22px;margin-top:40px;margin-right:120px;text-align:right;display:none}
+#loveu .signature{margin-top:0px;font-size:15px;font-style:italic}
+
+#clickSound{display:none}
+
+/* --- GLASS EFFECT TEXT BOX (SCROLLABLE) --- */
+#code{
+    float:left;
+    width:440px;
+    
+    /* Fixed height - creates the window size */
+    height:600px; 
+    
+    /* Makes it scrollable vertically */
+    overflow-y: auto; 
+    
+    /* Hides horizontal scrollbar */
+    overflow-x: hidden; 
+    
+    color:#333;
+    font-family:"Courier New", Courier, monospace; 
+    font-size:14px; 
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #ffd1dc; 
+    
+    /* Glass Background */
+    background-color: rgba(255, 255, 255, 0.85); 
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(255, 105, 180, 0.4); 
+    margin-top: 10px; 
+    margin-left: 20px; 
+}
+
+/* --- CUTE PINK SCROLLBAR STYLING --- */
+#code::-webkit-scrollbar {
+    width: 10px;
+}
+#code::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+}
+#code::-webkit-scrollbar-thumb {
+    background: #ff69b4; /* Hot Pink scrollbar handle */
+    border-radius: 10px;
+}
+#code::-webkit-scrollbar-thumb:hover {
+    background: #ff1493; /* Darker pink when you grab it */
+}
+
+#code .string{color:#9370db} 
+#code .keyword{color:#ff1493;font-weight:bold} 
+#code .placeholder{margin-left:15px}
+#code .space{margin-left:7px}
+#code .comments{color:#000; font-style: italic;} 
+
+#copyright{margin-top:10px;text-align:center;width:100%;color:#666}
+#errorMsg{width:100%;text-align:center;font-size:24px;position:absolute;top:100px;left:0}
+#copyright a{color:#666}
+
+/* Icons */
+#icon{font-size: 48px;color: red;margin: 50 px; align-content: center;}
+#heartspan{align-content: center;text-align: center;margin: 20px;}
+#babyicon{font-size: 48px;color: #ff69b4; margin: 50 px; align-content: center;}
+#babyspan{align-content: center;text-align: center;margin: 20px;}
+
+/* =======================================================
+   MOBILE OPTIMIZATION (Put this at the VERY BOTTOM)
+   ======================================================= */
+@media screen and (max-width: 768px) {
+    /* Stack content vertically instead of side-by-side */
+    #content {
+        width: 100% !important; /* Force full width on mobile */
+        height: auto !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 !important;
+    }
+
+    /* Adjust the Text Box to fit the phone screen */
+    #code {
+        float: none;
+        width: 95% !important; /* Almost full width */
+        height: 350px;         /* Shorter height for mobile */
+        margin: 10px auto;     /* Center it */
+        font-size: 11px;       /* Slightly smaller text */
+        margin-left: 0;
+    }
+
+    /* Shrink the Heart Animation to fit */
+    /* We assume the heart is drawn at 670px, so we scale it down */
+    #loveHeart {
+        float: none;
+        width: 670px;
+        height: 625px;
+        transform: scale(0.55); /* Shrink to 55% size */
+        transform-origin: top center;
+        margin-top: -50px;      /* Pull it up closer to text */
+        margin-left: 0;
+    }
+
+    /* Adjust Text inside the Heart */
+    #words {
+        font-size: 28px;
+    }
+    #messages {
+        font-size: 35px;
+    }
+    
+    /* Fix Background on Mobile */
+    body {
+        background-attachment: scroll;
+        background-position: top center;
+    }
+}
