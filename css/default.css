@@ -160,7 +160,7 @@ body {
         margin-bottom: -300px !important; 
     }
 
-    /* --- TEXT FIX: Shift Left by 20px --- */
+    /* --- TEXT FIX: Shift Left by 50px --- */
     #words {
         position: absolute !important;
         width: 100% !important;
@@ -168,8 +168,9 @@ body {
         top: 250px !important;
         text-align: center !important;
         padding: 0 !important;
-        /* THIS MOVES THE TEXT LEFT */
-        margin-left: -20px !important; 
+        
+        /* THIS MOVES THE TEXT LEFT MORE */
+        margin-left: -50px !important; 
     }
     
     #messages { 
@@ -179,7 +180,8 @@ body {
         width: 100% !important;
     }
     
-    #elapseClock .digit { font-size: 30px !important; }
+    /* Slightly smaller numbers to fit better */
+    #elapseClock .digit { font-size: 26px !important; }
     
     #loveu { 
         font-size: 20px !important; 
