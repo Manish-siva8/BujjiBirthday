@@ -73,7 +73,7 @@ body {
 #babyspan{align-content: center;text-align: center;margin: 20px;}
 
 /* =======================================================
-   MOBILE OPTIMIZATION (FINAL FIXED VERSION)
+   MOBILE OPTIMIZATION (FINAL TWEAKED VERSION)
    ======================================================= */
 @media screen and (max-width: 768px) {
     
@@ -160,7 +160,7 @@ body {
         margin-bottom: -300px !important; 
     }
 
-    /* --- TEXT FIX: Shift Left by 50px --- */
+    /* --- TEXT FIX: Shift Left by 85px --- */
     #words {
         position: absolute !important;
         width: 100% !important;
@@ -169,8 +169,8 @@ body {
         text-align: center !important;
         padding: 0 !important;
         
-        /* THIS MOVES THE TEXT LEFT MORE */
-        margin-left: -50px !important; 
+        /* INCREASED LEFT SHIFT TO -85PX */
+        margin-left: -85px !important; 
     }
     
     #messages { 
@@ -181,7 +181,7 @@ body {
     }
     
     /* Slightly smaller numbers to fit better */
-    #elapseClock .digit { font-size: 26px !important; }
+    #elapseClock .digit { font-size: 24px !important; }
     
     #loveu { 
         font-size: 20px !important; 
