@@ -135,9 +135,26 @@ if (isMobile) {
         
         $("#mobileStart").fadeOut(500, function() {
             $("#beigeOverlay").fadeIn(1000, function() {
-                // --- CRITICAL FIX: Recalculate Math NOW that elements are visible ---
-                offsetX = $("#loveHeart").width() / 2;
-                offsetY = $("#loveHeart").height() / 2 - 55;
+                
+                // --- CRITICAL FIX: RE-DRAW HEART AFTER VISIBLE ---
+                // We manually reset the canvas logic here
+                var $loveHeart = $("#loveHeart");
+                var $garden = $("#garden");
+                
+                // Force dimensions to ensure canvas works
+                $loveHeart.css("display", "block");
+                
+                // Re-calculate centers
+                offsetX = $loveHeart.width() / 2;
+                offsetY = $loveHeart.height() / 2 - 55;
+                
+                // Re-initialize Garden Canvas
+                var gardenCanvas = $garden[0];
+                gardenCanvas.width = $loveHeart.width();
+                gardenCanvas.height = $loveHeart.height();
+                gardenCtx = gardenCanvas.getContext("2d");
+                gardenCtx.globalCompositeOperation = "lighter";
+                garden = new Garden(gardenCtx, gardenCanvas);
                 
                 // Reposition the text inside the heart
                 adjustWordsPosition();
