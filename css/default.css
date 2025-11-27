@@ -1,4 +1,4 @@
-/* GLOBAL RESET */
+/* Ensure padding doesn't break layout */
 * { box-sizing: border-box; }
 
 html, body {
@@ -9,7 +9,6 @@ html, body {
     overflow-x: hidden; /* Stop side scrolling */
 }
 
-/* DEFAULT (DESKTOP) */
 body {
     background: url('../bg.png') no-repeat center center fixed; 
     background-size: cover;
@@ -52,6 +51,7 @@ body {
     margin-left: 20px; 
 }
 
+/* SCROLLBAR */
 #code::-webkit-scrollbar { width: 10px; }
 #code::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.5); border-radius: 10px; }
 #code::-webkit-scrollbar-thumb { background: #ff69b4; border-radius: 10px; }
@@ -72,17 +72,15 @@ body {
 #babyspan{align-content: center;text-align: center;margin: 20px;}
 
 /* =======================================================
-   MOBILE OPTIMIZATION (THE FIX)
+   MOBILE OPTIMIZATION (FINAL FIXED VERSION)
    ======================================================= */
 @media screen and (max-width: 768px) {
     
-    /* 1. MOBILE BACKGROUND */
     body {
         background: url('../bg_mobile.png') no-repeat center center fixed !important;
         background-size: cover !important;
     }
 
-    /* 2. BUTTON (Centered in Empty Space) */
     #mobileStart {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -91,14 +89,14 @@ body {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        padding-top: 25vh; /* Places button in the top gap */
+        padding-top: 25vh; 
     }
     #startBtn {
         background-color: #ff69b4;
         color: white;
         border: none;
         padding: 12px 25px;
-        font-size: 18px;
+        font-size: 16px;
         border-radius: 50px;
         font-family: "Courier New";
         font-weight: bold;
@@ -107,17 +105,15 @@ body {
     }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-    /* 3. BEIGE OVERLAY (Covers Image after click) */
     #beigeOverlay {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
-        /* TRANSPARENT BEIGE */
-        background-color: rgba(255, 250, 240, 0.92); 
-        overflow-y: scroll; /* Allows scrolling */
+        background-color: rgba(255, 250, 240, 0.92);
+        overflow-y: scroll;
+        overflow-x: hidden;
         display: none;
     }
 
-    /* 4. CONTENT LAYOUT */
     #content {
         width: 100% !important;
         height: auto !important;
@@ -127,37 +123,39 @@ body {
         padding-top: 10px;
     }
 
-    /* 5. TEXT BOX (Top) */
-    #code {
-        order: 1 !important; /* Text on Top */
-        float: none !important;
-        width: 90% !important;
-        height: 40vh !important;
-        margin: 10px auto !important;
-        font-size: 12px;
-        background-color: rgba(255, 255, 255, 0.95) !important;
-        border: 2px solid #ffb6c1;
-    }
-
-    /* 6. HEART (Bottom) - CENTERED */
     #loveHeart {
-        order: 2 !important; /* Heart on Bottom */
+        order: 1 !important;
         float: none !important;
         width: 670px !important;
         height: 625px !important;
         
-        /* THIS FORMULA CENTERS THE LARGE CANVAS ON SMALL SCREEN */
+        /* CENTER THE HEART */
         margin-left: calc(50% - 335px) !important; 
         margin-right: auto !important;
         margin-top: -20px !important;
         
+        /* SCALE IT DOWN */
         transform: scale(0.5); 
         transform-origin: top center; 
-        margin-bottom: -300px !important; 
+        
+        /* PULL WHITE BOX UP */
+        margin-bottom: -280px !important; 
+    }
+
+    #code {
+        order: 2 !important;
+        float: none !important;
+        width: 90% !important;
+        height: 40vh !important;
+        margin: 0 auto !important;
+        font-size: 12px;
+        background-color: rgba(255, 255, 255, 0.95) !important;
+        border: 2px solid #ffb6c1;
+        margin-bottom: 50px !important;
     }
 
     #words { font-size: 24px !important; }
     #messages { font-size: 30px !important; }
     #elapseClock .digit { font-size: 30px !important; }
-    #loveu { font-size: 20px !important; margin-top: 20px !important; }
+    #loveu { font-size: 20px !important; margin-top: 30px !important; }
 }
