@@ -87,30 +87,28 @@ body {
         float: none;
         width: 90% !important; /* Fits inside phone screen */
         height: 350px;         /* Shorter box for mobile */
-        margin: 0 auto 20px auto; /* Center it and add space below */
+        /* Forces margins to auto to center it perfectly */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-bottom: 20px !important;
         font-size: 12px;
     }
 
     /* 3. Shrink the Heart Canvas */
     #loveHeart {
         float: none;
-        /* We DO NOT change width/height here because JS needs 670px to draw. 
-           Instead, we use SCALE to visually shrink it. */
+        width: 670px;
+        height: 625px;
         transform: scale(0.5); 
         transform-origin: top center; 
-        margin-top: -50px; /* Pull it up closer to text */
-        margin-bottom: -150px; /* Remove extra space at bottom */
+        margin-top: -20px; /* Pushed down slightly so it doesn't overlap text */
+        margin-left: auto !important;
+        margin-right: auto !important;
     }
 
-    /* 4. Fix text inside the heart */
-    #words {
-        font-size: 28px;
-    }
-    #messages {
-        font-size: 35px;
-    }
+    #words { font-size: 28px; }
+    #messages { font-size: 35px; }
     
-    /* 5. Improve background on mobile */
     body {
         background-attachment: scroll;
         background-position: top center;
