@@ -1,4 +1,5 @@
-﻿var offsetX, offsetY;
+// --- FIX: Global variables so getHeartPoint can see them ---
+var offsetX, offsetY;
 var $window = $(window), gardenCtx, gardenCanvas, $garden, garden;
 var clientWidth = $(window).width();
 var clientHeight = $(window).height();
@@ -7,7 +8,7 @@ $(function () {
     // setup garden
     $loveHeart = $("#loveHeart");
     
-    // Assign values to the global variables
+    // --- FIX: Assign values to the global variables here ---
     offsetX = $loveHeart.width() / 2;
     offsetY = $loveHeart.height() / 2 - 55;
     
@@ -19,7 +20,7 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
     
-    // --- FIX IS HERE: Added + 150 to accommodate the glass effect padding ---
+    // --- FIX: Added +150 to width to fit the Glass Text Box padding ---
     $("#content").css("width", $loveHeart.width() + $("#code").width() + 150);
     
     $("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
