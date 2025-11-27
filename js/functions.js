@@ -1,4 +1,3 @@
-// --- GLOBAL VARIABLES (Critical for Heart Animation) ---
 var offsetX, offsetY;
 var $window = $(window), gardenCtx, gardenCanvas, $garden, garden;
 var clientWidth = $(window).width();
@@ -20,14 +19,15 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
     
-    // --- MOBILE VS DESKTOP WIDTH LOGIC ---
+    // --- MOBILE FIX: STOP JS FROM PUSHING LAYOUT ---
     if (clientWidth < 768) {
-        // MOBILE: Do NOT set a fixed pixel width. 
-        // This allows the CSS Flexbox to stack them vertically without scrolling.
+        // MOBILE: Reset everything to 0/auto so CSS takes over
         $("#content").css("width", "100%");
         $("#content").css("height", "auto");
+        $("#content").css("margin-top", "0");
+        $("#content").css("margin-left", "0");
     } else {
-        // DESKTOP: Calculate width based on Heart + Text Box + Padding
+        // DESKTOP: Original Logic
         $("#content").css("width", $loveHeart.width() + $("#code").width() + 150);
         $("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
         $("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
