@@ -1,4 +1,4 @@
-﻿/* Ensure padding doesn't break layout */
+/* Ensure padding doesn't break layout */
 * {
     box-sizing: border-box;
 }
@@ -25,27 +25,18 @@ body {
 
 #clickSound{display:none}
 
-/* --- GLASS EFFECT TEXT BOX (SCROLLABLE) --- */
+/* --- GLASS EFFECT TEXT BOX (DESKTOP) --- */
 #code{
     float:left;
     width:440px;
-    
-    /* Fixed height - creates the window size */
     height:600px; 
-    
-    /* Makes it scrollable vertically */
     overflow-y: auto; 
-    
-    /* Hides horizontal scrollbar */
     overflow-x: hidden; 
-    
     color:#333;
     font-family:"Courier New", Courier, monospace; 
     font-size:14px; 
     font-weight: bold;
     text-shadow: 1px 1px 0px #ffd1dc; 
-    
-    /* Glass Background */
     background-color: rgba(255, 255, 255, 0.85); 
     padding: 20px;
     border-radius: 20px;
@@ -54,21 +45,10 @@ body {
     margin-left: 20px; 
 }
 
-/* --- CUTE PINK SCROLLBAR STYLING --- */
-#code::-webkit-scrollbar {
-    width: 10px;
-}
-#code::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.5); 
-    border-radius: 10px;
-}
-#code::-webkit-scrollbar-thumb {
-    background: #ff69b4; /* Hot Pink scrollbar handle */
-    border-radius: 10px;
-}
-#code::-webkit-scrollbar-thumb:hover {
-    background: #ff1493; /* Darker pink when you grab it */
-}
+/* --- SCROLLBAR STYLING --- */
+#code::-webkit-scrollbar { width: 10px; }
+#code::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.5); border-radius: 10px; }
+#code::-webkit-scrollbar-thumb { background: #ff69b4; border-radius: 10px; }
 
 #code .string{color:#9370db} 
 #code .keyword{color:#ff1493;font-weight:bold} 
@@ -87,42 +67,42 @@ body {
 #babyspan{align-content: center;text-align: center;margin: 20px;}
 
 /* =======================================================
-   MOBILE OPTIMIZATION (Put this at the VERY BOTTOM)
+   MOBILE OPTIMIZATION (THE FIX)
    ======================================================= */
 @media screen and (max-width: 768px) {
-    /* Stack content vertically instead of side-by-side */
+    
+    /* 1. Stack everything vertically */
     #content {
-        width: 100% !important; /* Force full width on mobile */
+        width: 100% !important;
         height: auto !important;
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        flex-direction: column; /* Top to bottom */
+        align-items: center; /* Center horizontally */
         margin: 0 !important;
+        padding-top: 20px;
     }
 
-    /* Adjust the Text Box to fit the phone screen */
+    /* 2. Fix the White Box Width */
     #code {
         float: none;
-        width: 95% !important; /* Almost full width */
-        height: 350px;         /* Shorter height for mobile */
-        margin: 10px auto;     /* Center it */
-        font-size: 11px;       /* Slightly smaller text */
-        margin-left: 0;
+        width: 90% !important; /* Fits inside phone screen */
+        height: 350px;         /* Shorter box for mobile */
+        margin: 0 auto 20px auto; /* Center it and add space below */
+        font-size: 12px;
     }
 
-    /* Shrink the Heart Animation to fit */
-    /* We assume the heart is drawn at 670px, so we scale it down */
+    /* 3. Shrink the Heart Canvas */
     #loveHeart {
         float: none;
-        width: 670px;
-        height: 625px;
-        transform: scale(0.55); /* Shrink to 55% size */
-        transform-origin: top center;
-        margin-top: -50px;      /* Pull it up closer to text */
-        margin-left: 0;
+        /* We DO NOT change width/height here because JS needs 670px to draw. 
+           Instead, we use SCALE to visually shrink it. */
+        transform: scale(0.5); 
+        transform-origin: top center; 
+        margin-top: -50px; /* Pull it up closer to text */
+        margin-bottom: -150px; /* Remove extra space at bottom */
     }
 
-    /* Adjust Text inside the Heart */
+    /* 4. Fix text inside the heart */
     #words {
         font-size: 28px;
     }
@@ -130,7 +110,7 @@ body {
         font-size: 35px;
     }
     
-    /* Fix Background on Mobile */
+    /* 5. Improve background on mobile */
     body {
         background-attachment: scroll;
         background-position: top center;
