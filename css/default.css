@@ -1,18 +1,17 @@
-/* GLOBAL RESET */
-* {
-    box-sizing: border-box;
-}
+/* Ensure padding doesn't break layout */
+* { box-sizing: border-box; }
 
 body {
     margin: 0;
     padding: 0;
-    /* DESKTOP BACKGROUND */
     background: url('../bg.png') no-repeat center center fixed; 
     background-size: cover;
     font-size: 12px;
     overflow: auto;
     overflow-x: hidden;
 }
+
+#mobileStart { display: none; } /* Hidden by default on desktop */
 
 #mainDiv{width:100%;height:100%}
 #loveHeart{float:left;width:670px;height:625px}
@@ -27,7 +26,7 @@ body {
 
 #clickSound{display:none}
 
-/* TEXT BOX STYLE (Desktop) */
+/* DESKTOP TEXT BOX */
 #code{
     float:left;
     width:440px;
@@ -47,6 +46,7 @@ body {
     margin-left: 20px; 
 }
 
+/* SCROLLBAR */
 #code::-webkit-scrollbar { width: 10px; }
 #code::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.5); border-radius: 10px; }
 #code::-webkit-scrollbar-thumb { background: #ff69b4; border-radius: 10px; }
@@ -61,81 +61,105 @@ body {
 #errorMsg{width:100%;text-align:center;font-size:24px;position:absolute;top:100px;left:0}
 #copyright a{color:#666}
 
+/* Icons */
 #icon{font-size: 48px;color: red;margin: 50 px; align-content: center;}
 #heartspan{align-content: center;text-align: center;margin: 20px;}
 #babyicon{font-size: 48px;color: #ff69b4; margin: 50 px; align-content: center;}
 #babyspan{align-content: center;text-align: center;margin: 20px;}
 
 /* =======================================================
-   MOBILE OPTIMIZATION (THE "CLICK TO REVEAL" FIX)
+   MOBILE OPTIMIZATION (START SCREEN & LAYOUT)
    ======================================================= */
 @media screen and (max-width: 768px) {
     
     /* 1. MOBILE BACKGROUND */
     body {
-        /* Update this file name to bg_mobile.png   */
         background: url('../bg_mobile.png') no-repeat center center fixed !important;
         background-size: cover !important;
     }
 
-    /* 2. THE BEIGE OVERLAY CONTAINER */
-    #content {
-        width: 100vw !important;
-        height: 100vh !important; /* Full Screen */
+    /* 2. START SCREEN STYLE */
+    #mobileStart {
         position: fixed;
-        top: 0;
-        left: 0;
-        
-        /* Flexbox to order items */
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: url('../bg_mobile.png') no-repeat center center fixed;
+        background-size: cover;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .start-content {
+        text-align: center;
+        background: rgba(255,255,255,0.9);
+        padding: 40px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.5);
+    }
+    .start-content h1 { color: #ff1493; font-family: "Courier New"; }
+    #startBtn {
+        background-color: #ff69b4;
+        color: white;
+        border: none;
+        padding: 15px 30px;
+        font-size: 20px;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 20px;
+        font-family: "Courier New";
+        font-weight: bold;
+        animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+
+    /* 3. MAIN CONTENT LAYOUT */
+    #content {
+        width: 100% !important;
+        height: auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        justify-content: center !important;
-        
         margin: 0 !important;
-        padding-top: 20px;
-        
-        /* HIDDEN INITIALLY (Wait for click) */
-        opacity: 0; 
-        pointer-events: none; /* Click goes through to body */
-        transition: opacity 1.5s ease; /* Slow fade in */
-        
-        /* The Transparent Beige Background */
-        background-color: rgba(245, 245, 220, 0.92); 
-        z-index: 999;
+        padding-top: 10px;
     }
 
-    /* 3. SHOW CONTENT CLASS (Added by JS on click) */
-    #content.show-gift {
-        opacity: 1;
-        pointer-events: auto;
+    /* 4. TEXT BOX (Top) */
+    #code {
+        float: none !important;
+        width: 90% !important;
+        height: 40vh !important;
+        margin: 20px auto !important;
+        font-size: 12px;
     }
 
-    /* 4. HEART ON TOP (Order 1) */
+    /* 5. HEART (Bottom) & SCALING */
     #loveHeart {
         float: none !important;
-        order: 1; /* First item */
         width: 670px !important;
         height: 625px !important;
         
-        /* Scale down */
-        transform: scale(0.5); 
-        transform-origin: center center;
+        /* Scale down to fit mobile width */
+        transform: scale(0.55); 
+        transform-origin: top center; 
         
-        margin: -100px 0 -150px 0 !important; /* Compact margins */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        margin-top: -20px !important; 
+        margin-bottom: -150px !important; 
     }
 
-    /* 5. TEXT BOX ON BOTTOM (Order 2) */
-    #code {
-        float: none !important;
-        order: 2; /* Second item */
-        width: 90% !important;
-        height: 40vh !important; /* 40% of screen height */
-        margin: 0 auto !important;
-        font-size: 12px;
-        background-color: rgba(255, 255, 255, 0.9); /* Slightly more white */
+    /* 6. FIX HEART TEXT SIZES (Critical for "Mankeerth FOREVER") */
+    #words {
+        font-size: 22px !important; /* Smaller base font */
     }
-
-    #words { font-size: 28px; }
-    #messages { font-size: 35px; }
+    #messages {
+        font-size: 28px !important; /* Main Name Title */
+    }
+    #elapseClock .digit {
+        font-size: 30px !important; /* Timer numbers */
+    }
+    #loveu {
+        font-size: 20px !important;
+        margin-top: 30px !important;
+    }
 }
