@@ -20,12 +20,12 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
     
-    // --- CRITICAL FIX FOR MOBILE ---
-    // Only force the huge width if we are on a PC (screen bigger than 768px)
+    // --- RESPONSIVE WIDTH LOGIC ---
     if (clientWidth > 768) {
+        // Laptop: content width = heart + text + padding
         $("#content").css("width", $loveHeart.width() + $("#code").width() + 150);
     } else {
-        // On mobile, remove any fixed width so CSS can handle it
+        // Mobile: content width = auto (let CSS Flexbox handle it)
         $("#content").css("width", "auto");
     }
     
