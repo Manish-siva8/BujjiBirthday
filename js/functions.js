@@ -1,4 +1,4 @@
-// --- FIX: Global variables ---
+// --- GLOBAL VARIABLES (Critical for Heart Animation) ---
 var offsetX, offsetY;
 var $window = $(window), gardenCtx, gardenCanvas, $garden, garden;
 var clientWidth = $(window).width();
@@ -20,18 +20,19 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
     
-    // --- RESPONSIVE WIDTH LOGIC ---
-    if (clientWidth > 768) {
-        // Laptop: content width = heart + text + padding
-        $("#content").css("width", $loveHeart.width() + $("#code").width() + 150);
+    // --- MOBILE VS DESKTOP WIDTH LOGIC ---
+    if (clientWidth < 768) {
+        // MOBILE: Do NOT set a fixed pixel width. 
+        // This allows the CSS Flexbox to stack them vertically without scrolling.
+        $("#content").css("width", "100%");
+        $("#content").css("height", "auto");
     } else {
-        // Mobile: content width = auto (let CSS Flexbox handle it)
-        $("#content").css("width", "auto");
+        // DESKTOP: Calculate width based on Heart + Text Box + Padding
+        $("#content").css("width", $loveHeart.width() + $("#code").width() + 150);
+        $("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
+        $("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
+        $("#content").css("margin-left", Math.max(($window.width() - $("#content").width()) / 2, 10));
     }
-    
-    $("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
-    $("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
-    $("#content").css("margin-left", Math.max(($window.width() - $("#content").width()) / 2, 10));
 
     // renderLoop
     setInterval(function () {
