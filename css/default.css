@@ -78,7 +78,7 @@ body {
 @media screen and (max-width: 768px) {
     
     body {
-        background: url('../bg_mobile.png') no-repeat center center fixed !important;
+        background: url('../bg_mobile.jpg') no-repeat center center fixed !important;
         background-size: cover !important;
     }
 
