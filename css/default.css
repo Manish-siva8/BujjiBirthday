@@ -6,9 +6,10 @@ html, body {
     padding: 0;
     width: 100%;
     height: 100%;
-    overflow-x: hidden; /* CRITICAL: Stops side scrolling */
+    overflow-x: hidden; /* Stop side scrolling */
 }
 
+/* DEFAULT (DESKTOP) */
 body {
     background: url('../bg.png') no-repeat center center fixed; 
     background-size: cover;
@@ -51,7 +52,6 @@ body {
     margin-left: 20px; 
 }
 
-/* SCROLLBAR */
 #code::-webkit-scrollbar { width: 10px; }
 #code::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.5); border-radius: 10px; }
 #code::-webkit-scrollbar-thumb { background: #ff69b4; border-radius: 10px; }
@@ -66,14 +66,13 @@ body {
 #errorMsg{width:100%;text-align:center;font-size:24px;position:absolute;top:100px;left:0}
 #copyright a{color:#666}
 
-/* Icons */
 #icon{font-size: 48px;color: red;margin: 50 px; align-content: center;}
 #heartspan{align-content: center;text-align: center;margin: 20px;}
 #babyicon{font-size: 48px;color: #ff69b4; margin: 50 px; align-content: center;}
 #babyspan{align-content: center;text-align: center;margin: 20px;}
 
 /* =======================================================
-   MOBILE OPTIMIZATION (FINAL FIXED VERSION)
+   MOBILE OPTIMIZATION (THE FIX)
    ======================================================= */
 @media screen and (max-width: 768px) {
     
@@ -83,7 +82,7 @@ body {
         background-size: cover !important;
     }
 
-    /* 2. START SCREEN */
+    /* 2. BUTTON (Centered in Empty Space) */
     #mobileStart {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -91,15 +90,15 @@ body {
         z-index: 9999;
         display: flex;
         justify-content: center;
-        align-items: flex-start; /* Top align */
-        padding-top: 25vh; /* Push button down slightly */
+        align-items: flex-start;
+        padding-top: 25vh; /* Places button in the top gap */
     }
     #startBtn {
         background-color: #ff69b4;
         color: white;
         border: none;
         padding: 12px 25px;
-        font-size: 16px;
+        font-size: 18px;
         border-radius: 50px;
         font-family: "Courier New";
         font-weight: bold;
@@ -108,66 +107,57 @@ body {
     }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.1); } 100% { transform: scale(1); } }
 
-    /* 3. BEIGE OVERLAY (Container) */
+    /* 3. BEIGE OVERLAY (Covers Image after click) */
     #beigeOverlay {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
-        background-color: rgba(255, 250, 240, 0.92);
-        overflow-y: scroll;
-        overflow-x: hidden; /* Stop horizontal scroll inside overlay */
+        /* TRANSPARENT BEIGE */
+        background-color: rgba(255, 250, 240, 0.92); 
+        overflow-y: scroll; /* Allows scrolling */
         display: none;
     }
 
-    /* 4. MAIN CONTENT LAYOUT */
+    /* 4. CONTENT LAYOUT */
     #content {
         width: 100% !important;
         height: auto !important;
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
-        margin: 0 !important; /* Force 0 margins */
-        padding: 0 !important;
+        padding-top: 10px;
     }
 
-    /* 5. HEART (Top) - THE CENTERING TRICK */
-    #loveHeart {
-        order: 1 !important;
-        float: none !important;
-        width: 670px !important; /* Canvas must stay this size */
-        height: 625px !important;
-        
-        /* This weird calculation centers a 670px object on a small screen */
-        margin-left: calc(50% - 335px) !important; 
-        margin-right: auto !important;
-        margin-top: -20px !important;
-        
-        /* Scale it down visually */
-        transform: scale(0.5); 
-        transform-origin: top center; 
-        
-        /* Close the gap below the shrunk heart */
-        margin-bottom: -300px !important; 
-    }
-
-    /* 6. WHITE BOX (Bottom) */
+    /* 5. TEXT BOX (Top) */
     #code {
-        order: 2 !important;
+        order: 1 !important; /* Text on Top */
         float: none !important;
         width: 90% !important;
         height: 40vh !important;
-        
-        /* Force Center */
-        margin: 0 auto !important;
-        margin-bottom: 50px !important;
-        
+        margin: 10px auto !important;
         font-size: 12px;
         background-color: rgba(255, 255, 255, 0.95) !important;
         border: 2px solid #ffb6c1;
     }
 
-    /* 7. HEART TEXT SIZES */
+    /* 6. HEART (Bottom) - CENTERED */
+    #loveHeart {
+        order: 2 !important; /* Heart on Bottom */
+        float: none !important;
+        width: 670px !important;
+        height: 625px !important;
+        
+        /* THIS FORMULA CENTERS THE LARGE CANVAS ON SMALL SCREEN */
+        margin-left: calc(50% - 335px) !important; 
+        margin-right: auto !important;
+        margin-top: -20px !important;
+        
+        transform: scale(0.5); 
+        transform-origin: top center; 
+        margin-bottom: -300px !important; 
+    }
+
     #words { font-size: 24px !important; }
     #messages { font-size: 30px !important; }
     #elapseClock .digit { font-size: 30px !important; }
-    #loveu { font-size: 20px !important; margin-top: 30px !important; }
+    #loveu { font-size: 20px !important; margin-top: 20px !important; }
 }
