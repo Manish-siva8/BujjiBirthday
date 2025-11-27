@@ -7,7 +7,6 @@ $(function () {
     // setup garden
     $loveHeart = $("#loveHeart");
     
-    // Assign values to the global variables
     offsetX = $loveHeart.width() / 2;
     offsetY = $loveHeart.height() / 2 - 55;
     
@@ -19,15 +18,11 @@ $(function () {
     gardenCtx.globalCompositeOperation = "lighter";
     garden = new Garden(gardenCtx, gardenCanvas);
     
-    // --- MOBILE FIX: STOP JS FROM PUSHING LAYOUT ---
+    // --- MOBILE FIX ---
     if (clientWidth < 768) {
-        // MOBILE: Reset everything to 0/auto so CSS takes over
         $("#content").css("width", "100%");
         $("#content").css("height", "auto");
-        $("#content").css("margin-top", "0");
-        $("#content").css("margin-left", "0");
     } else {
-        // DESKTOP: Original Logic
         $("#content").css("width", $loveHeart.width() + $("#code").width() + 150);
         $("#content").css("height", Math.max($loveHeart.height(), $("#code").height()));
         $("#content").css("margin-top", Math.max(($window.height() - $("#content").height()) / 2, 10));
