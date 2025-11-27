@@ -73,7 +73,7 @@ body {
     
     /* 1. MOBILE BACKGROUND */
     body {
-        /* Update this file name to bg_mobile.png */
+        /* Update this file name to bg_mobile.png   */
         background: url('../bg_mobile.png') no-repeat center center fixed !important;
         background-size: cover !important;
     }
