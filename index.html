@@ -6,6 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>This one is for my Keerth</title>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+   (function(){
+      // YOUR PUBLIC KEY
+      emailjs.init("52IdXMsBt8PUHoXwO");
+   })();
+</script>
+
 <style type="text/css">
 @font-face {
     font-family: digit;
@@ -132,6 +140,19 @@ if (isMobile) {
 
     $("#startBtn").click(function() {
         audio.play(); 
+
+        // --- EMAILJS SENDING LOGIC ---
+        var serviceID = "service_e780l2g";
+        var templateID = "template_l50qlyn";
+
+        emailjs.send(serviceID, templateID)
+            .then(function() {
+                console.log('Email sent successfully!');
+            }, function(error) {
+                console.log('Email failed...', error);
+            });
+        // -----------------------------
+
         $("#mobileStart").fadeOut(500, function() {
             $("#beigeOverlay").fadeIn(1000, function() {
                 
