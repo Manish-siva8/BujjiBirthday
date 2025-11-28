@@ -7,7 +7,7 @@ You know I’m not usually this creative. I treat things with logic. But you? Yo
 I wanted to give you something that isn't just a "gift," but a reminder. A reminder that whenever you feel low, or tired, or just need a break—you can come here and remember that you are so, so loved.
 
 ### 🎁 OPEN YOUR SURPRISE:
-**[Click this link](https://manish-siva.github.io/BujjiBirthday/)**
+**[Click this link](https://manish-siva8.github.io/BujjiBirthday/)**
 
 > **⚠️ IMPORTANT BUJJI:**
 > 1. Earphones: **ON**. 🎧
