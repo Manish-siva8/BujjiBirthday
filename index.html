@@ -156,7 +156,7 @@ if (isMobile) {
         $("#mobileStart").fadeOut(500, function() {
             $("#beigeOverlay").fadeIn(1000, function() {
                 
-                // RUN ONCE LOGIC
+                // RUN ONCE LOGIC (Prevents Blinking/Glitches)
                 if (!animationStarted) {
                     animationStarted = true;
                     var $loveHeart = $("#loveHeart");
@@ -179,7 +179,9 @@ if (isMobile) {
                         timeElapse(together);
                     }, 500);
                     adjustCodePosition();
-                    $("#code").show(); // Instant text show on mobile
+                    
+                    // --- ANIMATION ENABLED HERE ---
+                    $("#code").typewriter(); 
                 }
             });
         });
