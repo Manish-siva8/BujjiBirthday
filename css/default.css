@@ -80,7 +80,7 @@ body {
     
     /* 1. MOBILE BACKGROUND FIX (Removed 'fixed', added 'scroll') */
     body {
-        background: url('../bg_mobile.png') no-repeat center center scroll !important;
+        background: url('../bg_mobile.jpg') no-repeat center center scroll !important;
         background-size: cover !important;
         background-position: top center !important;
     }
