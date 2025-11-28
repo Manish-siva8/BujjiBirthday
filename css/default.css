@@ -77,11 +77,11 @@ body {
    MOBILE OPTIMIZATION (UPDATED FIXES)
    ======================================================= */
 @media screen and (max-width: 768px) {
-
-    /* 1. MOBILE BACKGROUND FIX (Removed 'fixed', added 'scroll') */
+    
+    /* 1. MOBILE BACKGROUND FIX */
+    /* IMPORTANT: Check if your file is .png or .jpg and update below */
     body {
-        background: url('../bg_mobile.jpg') no-repeat center center scroll !important;
-        background: url('../bg_mobile.jpg') no-repeat center center scroll !important;
+        background: url('../bg_mobile.png') no-repeat center center scroll !important;
         background-size: cover !important;
         background-position: top center !important;
     }
@@ -153,15 +153,15 @@ body {
         float: none !important;
         width: 670px !important;
         height: 625px !important;
-
+        
         position: relative !important;
         left: 50% !important;
         margin-left: -335px !important; 
         margin-top: 0px !important;
-
+        
         transform: scale(0.5); 
         transform-origin: top center !important; 
-
+        
         margin-bottom: -300px !important; 
     }
 
@@ -173,21 +173,21 @@ body {
         top: 240px !important; /* Moved slightly up */
         text-align: center !important;
         padding: 0 !important;
-
+        
         /* Adjusted shift to balance centering and text flow */
         margin-left: -65px !important; 
     }
-
+    
     #messages { 
         display: block !important;
         font-size: 26px !important; /* Smaller Title */
         text-align: center !important;
         width: 100% !important;
     }
-
+    
     /* Smaller numbers to fit inside heart */
     #elapseClock .digit { font-size: 24px !important; }
-
+    
     /* Smaller message text */
     #loveu { 
         font-size: 16px !important; 
