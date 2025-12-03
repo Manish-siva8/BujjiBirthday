@@ -1,6 +1,6 @@
 # For My Home, Keerthana.
 
-There are 8 billion people in this world, and somehow, I got lucky enough to find the one person who makes everything make sense.
+There are 8 billion people in this world, and somehow, I got lucky enough to find the one person who makes everything sense.
 
 You know I’m not usually this creative. I treat things with logic. But you? You are the one exception to my logic. You make me want to do things I’ve never done before—like building a whole website just to see you smile for a few seconds.
 
